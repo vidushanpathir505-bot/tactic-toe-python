@@ -11,6 +11,6 @@ class Player:
         self.name = name
         
         
-print(Player('X')   )    
+ 
         
 
