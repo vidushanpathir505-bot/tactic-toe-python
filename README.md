@@ -40,7 +40,7 @@ A lightweight CLI game playable directly in the terminal. The board is numbered 
 
 ### How to Run
 ```bash
-cd cli
+cd tic-tac-toe
 python tictactoe.py
 ```
 
@@ -61,7 +61,7 @@ A fully rebuilt version using Tkinter for a graphical interface and Object-Orien
 
 ### How to Run
 ```bash
-cd gui
+cd tic-tac-toe-v2
 python main.py
 ```
 
