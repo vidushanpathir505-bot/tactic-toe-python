@@ -104,35 +104,6 @@ class Game:
 
         return self.play_turn(position)
 
-def display_board(board):
-    print(f"{board[0]} | {board[1]} | {board[2]}")
-    print(f"{board[3]} | {board[4]} | {board[5]}")
-    print(f"{board[6]} | {board[7]} | {board[8]}")
-    print("-" * 10)
-
-def main():
-    # Initialize the game (Player vs Bot)
-    my_game = Game(name1="Alice", name2="Bob", mode="bot")
-    
-    print("Welcome to Tic Tac Toe!")
-    display_board(my_game.board)
-
-    while True:
-        try:
-            # Ask for input if it's a human's turn
-            pos = int(input(f"{my_game.current_player.name}'s turn (0-8): "))
-            result = my_game.play_turn(pos)
-            
-            display_board(my_game.board)
-            print(f"Status: {result}")
-
-            if "wins" in result or result == "Draw":
-                break
-        except ValueError:
-            print("Please enter a number between 0 and 8.")
-
-if __name__ == "__main__":
-    main()
 
 
  
