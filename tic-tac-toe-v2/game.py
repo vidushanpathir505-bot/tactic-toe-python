@@ -17,7 +17,7 @@ class Game:
                             (0,4,8), (2,4,6)             
                             ]
         
-        self.winning_positions = None #store the winning line positions
+        self.winning_positions = None
        
         if mode == 'pvp':
            self.player1 = Player('X', name=name1)

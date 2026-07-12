@@ -201,8 +201,13 @@ class GameEngine:
         self.game.reset_board()
 
         self.game.current_player = self.game.player1
+        
+        self.game.winning_positions = None
+        
+        for btn in self.buttons:
+            btn.config(text='', state='normal', bg=self.btn_color, fg=self.text_color)
 
-        self.update_board()
+       
 
 
         
