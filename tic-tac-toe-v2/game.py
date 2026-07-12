@@ -16,6 +16,8 @@ class Game:
                             (0,3,6), (1,4,7), (2,5,8),   
                             (0,4,8), (2,4,6)             
                             ]
+        
+        self.winning_positions = None #store the winning line positions
        
         if mode == 'pvp':
            self.player1 = Player('X', name=name1)
@@ -44,10 +46,11 @@ class Game:
             return True
         
     def check_winner(self):
-# check player win or lose
+# check player win or lose and store winning positions
 
         for a, b, c in self.win_patterns:
             if self.board[a] == self.board[b] == self.board[c] != '_':
+                self.winning_positions = (a, b, c) 
                 return self.board[a]
         return None
 

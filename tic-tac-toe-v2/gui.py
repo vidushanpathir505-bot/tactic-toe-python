@@ -15,6 +15,7 @@ class GameEngine:
         self.x_color = "#ff4d4d"
         self.o_color = "#4da6ff"
         self.text_color = "#ffffff"
+        self.win_color = "#2ecc71"
 
         self.root.configure(bg=self.bg_color)
 
@@ -177,11 +178,22 @@ class GameEngine:
             value = self.game.board[i]
 
             if value == '_':
+                
                 self.buttons[i].config(text='', state='normal')
+                
             elif value == 'X':
-                self.buttons[i].config(text='X', fg=self.x_color, state='disable')
-            else:                    
-                self.buttons[i].config(text='O', fg=self.o_color, state='disable')
+                
+                if self.game.winning_positions and i in self.game.winning_positions:
+                    self.buttons[i].config(text='X', fg=self.text_color, state='disable', bg=self.win_color)
+                else:    
+                    self.buttons[i].config(text='X', fg=self.x_color, state='disable')
+            
+            else:
+                
+                if self.game.winning_positions and i in self.game.winning_positions:
+                    self.buttons[i].config(text='O', fg=self.text_color, state='disable', bg=self.win_color)
+                else:                        
+                    self.buttons[i].config(text='O', fg=self.o_color, state='disable')
 
     def restart_game(self):
 # restart the game
