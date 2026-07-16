@@ -1,78 +1,94 @@
-#TIC-TAC-TOE GAME
+# TIC-TAC-TOE GAME
 
 import random
 
-board = ['_','_','_',
-         '_','_','_',
-         '_','_','_',]
+board = [
+    "_",
+    "_",
+    "_",
+    "_",
+    "_",
+    "_",
+    "_",
+    "_",
+    "_",
+]
 
 BOT = "O"
 
-def game_board(board):          #print the game board
 
-    print( board[0], '|' ,board[1], '|' ,board[2])
+def game_board(board):  # print the game board
+
+    print(board[0], "|", board[1], "|", board[2])
     print("---------")
-    print( board[3], '|' ,board[4], '|' ,board[5])
+    print(board[3], "|", board[4], "|", board[5])
     print("---------")
-    print( board[6], '|' ,board[7], '|' ,board[8])
-    
+    print(board[6], "|", board[7], "|", board[8])
+
 
 def choose_winner(board):
     win_patterns = [
-        (0,1,2), (3,4,5), (6,7,8),   
-        (0,3,6), (1,4,7), (2,5,8),   
-        (0,4,8), (2,4,6)             
+        (0, 1, 2),
+        (3, 4, 5),
+        (6, 7, 8),
+        (0, 3, 6),
+        (1, 4, 7),
+        (2, 5, 8),
+        (0, 4, 8),
+        (2, 4, 6),
     ]
 
     # Check for a winner
     for a, b, c in win_patterns:
-        if board[a] == board[b] == board[c] != '_':
-            print('🎉-----🎉-----🎉')
-            print(f"---🎉{board[a]} YOU WON🎉---")   
-            print('🎉-----🎉-----🎉')
+        if board[a] == board[b] == board[c] != "_":
+            print("🎉-----🎉-----🎉")
+            print(f"---🎉{board[a]} YOU WON🎉---")
+            print("🎉-----🎉-----🎉")
             print()
             return True
-        
 
     # Check for draw (no spaces left)
-    if '_' not in board:
-        print('-----😓-----')
+    if "_" not in board:
+        print("-----😓-----")
         print("    Draw ☹     ")
-        print('-----😓-----')
+        print("-----😓-----")
         print()
         return True
 
     # No winner yet, game still ongoing
     return None
 
-def game_bot(board):         #game bot
 
-    if board[4] == '_':
+def game_bot(board):  # game bot
+
+    if board[4] == "_":
         board[4] = BOT
         return
 
     empty = [i for i in range(9) if board[i] == "_"]
     board[random.choice(empty)] = BOT
 
-def board_cleaner(board):           #clean the board to play new round
+
+def board_cleaner(board):  # clean the board to play new round
 
     for i in range(9):
+        if board[i] == "X" or board[i] == "O":
+            board[i] = "_"
 
-        if  board[i] == 'X' or board[i] == 'O':
-            board[i] = '_'
 
-def show_messages(prompt):            #show clearly player to error messages
+def show_messages(prompt):  # show clearly player to error messages
     print()
     print(prompt)
     print()
 
+
 def main(board):
 
-    print('|---------||---------|')
+    print("|---------||---------|")
     print("WELCOME TO TIC TAC TOE")
-    print('|---------||---------|')
+    print("|---------||---------|")
     print()
-    print('--BOARD--')
+    print("--BOARD--")
     print("1 | 2 | 3\n4 | 5 | 6\n7 | 8 | 9")
     print()
 
@@ -83,20 +99,19 @@ def main(board):
                 player2 = "O"
 
                 while True:
-
                     try:
-                        move1 = int(input('Enter position (1-9): ')) - 1
+                        move1 = int(input("Enter position (1-9): ")) - 1
 
-                    except ValueError:          #Checking for value error
-                        show_messages('Enter Valid Number')
-                        continue   
-
-                    if move1 < 0 or move1 > 9:          #Checking for out of range indexeses
-                        show_messages('Enter Valid Number')
+                    except ValueError:  # Checking for value error
+                        show_messages("Enter Valid Number")
                         continue
 
-                    if board[move1] != '_':
-                        show_messages('Position already taken')
+                    if move1 < 0 or move1 > 9:  # Checking for out of range indexeses
+                        show_messages("Enter Valid Number")
+                        continue
+
+                    if board[move1] != "_":
+                        show_messages("Position already taken")
                         continue
 
                     board[move1] = player1
@@ -109,18 +124,18 @@ def main(board):
                         break
 
                     try:
-                        move2 = int(input('Enter position (1-9): ')) - 1
+                        move2 = int(input("Enter position (1-9): ")) - 1
 
-                    except ValueError:          #Checking for value error
-                        show_messages('Enter Valid Number')       
-                        continue   
-
-                    if move2 < 0 or move2 > 9:          #Checking for out of range indexeses
-                        show_messages('Enter Valid Number')
+                    except ValueError:  # Checking for value error
+                        show_messages("Enter Valid Number")
                         continue
 
-                    if board[move2] != '_':
-                        show_messages('Position already taken')
+                    if move2 < 0 or move2 > 9:  # Checking for out of range indexeses
+                        show_messages("Enter Valid Number")
+                        continue
+
+                    if board[move2] != "_":
+                        show_messages("Position already taken")
                         continue
 
                     board[move2] = player2
@@ -131,26 +146,24 @@ def main(board):
                     if winner:
                         board_cleaner(board)
                         break
-            
+
             case "2":
-
                 while True:
-
                     player1 = "X"
 
                     try:
                         move1 = int(input("Enter your move (1-9): ")) - 1
 
-                    except ValueError:          #Checking for value error
-                        show_messages('Enter Valid Number')     
-                        continue   
+                    except ValueError:  # Checking for value error
+                        show_messages("Enter Valid Number")
+                        continue
 
-                    if move1 < 0 or move1 > 9:          #Checking for out of range indexeses
-                        show_messages('Enter Valid Number')
-                        continue   
+                    if move1 < 0 or move1 > 9:  # Checking for out of range indexeses
+                        show_messages("Enter Valid Number")
+                        continue
 
-                    if board[move1] != '_':
-                        show_messages('Position already taken')
+                    if board[move1] != "_":
+                        show_messages("Position already taken")
                         continue
 
                     board[move1] = player1
@@ -170,18 +183,12 @@ def main(board):
                         break
 
             case "3":
-                show_messages('🙏Thanks for playing!🙏')
-                break      
+                show_messages("🙏Thanks for playing!🙏")
+                break
 
             case _:
-                show_messages('🙃Invalid input🙃')    
+                show_messages("🙃Invalid input🙃")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main(board)
-
-
-
-
-        
-
-
